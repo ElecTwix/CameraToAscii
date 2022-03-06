@@ -7,12 +7,12 @@ Simple C++ Program can get camera input and convert to ascii in terminal.
 - OpenCV
 
 ## Usage
-#Linux
+# Linux
 
 - Open Terminal
 - type ./CameraToAscii
   
-#Windows
+# Windows
   
 - Open Terminal
 - type ./CameraToAscii
