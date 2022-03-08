@@ -53,32 +53,40 @@ char GetChar(unsigned char * p)
 
 int main(int, char**)
 {
-    VideoCapture cap(0);
+    VideoCapture cap(-1);
     if(!cap.isOpened()) return -1;
 
     Mat frame, frame2, ascii;
     //namedWindow("edges",1);
     for(;;)
     {
+        std::string str = "";
+        str.resize(10000);
+
         cap >> frame;
         cv::resize(frame, frame2, cv::Size(120, 60));
 
 
         for(int i = 1; i < 60; i++)
         {
+            char temp_str[120];
+
             for(int j = 1; j < 120; j++)
             {
                 unsigned char * p = frame2.ptr(i, j);
                 //std::cout << p[0];
-
-                std::cout << GetChar(p);
+                temp_str[j-1] = GetChar(p);
+                //std::cout << GetChar(p);
 
             }
 
-            std::cout << "\n";
+            str = str + temp_str + "\n";
+            //std::cout << "\n";
 
         }
+        std::cout << str;
 
+        printf("\033c");
         //imshow("Frame2", frame2);
 
         if(waitKey(30) >= 0) break;
